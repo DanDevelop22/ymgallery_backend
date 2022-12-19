@@ -38,6 +38,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -104,7 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-ue'
 
 TIME_ZONE = 'UTC'
 
@@ -120,9 +121,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = (str(os.path.join(BASE_DIR,'static')),)
 STATIC_URL = 'static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = 'media/'
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -133,4 +131,23 @@ AUTH_USER_MODEL = 'authentication.User'
 CORS_ORIGIN_WHITELIST = [
      'http://localhost:3000'
 ]
+
+# Config HTTPS
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_HOST = ['ymgallerybackend.azurewebsites.net']
+SESSION_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
+CSRF_COOKIE_SECURE = True
+
+SECURE_HSTS_SECONDS = 31536000 # 1year
+SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
+# Config Storage
+DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
+AZURE_ACCOUNT_NAME = "ymgallerystorage"
+AZURE_ACCOUNT_KEY = "44LrlrKS06pHQcPrAL/ekYjAO5Vm9ZTX82qHc/as6e/F58iP0t4jq+v5wlR1c+BlCwPPl5nQC1+4+ASt0go+TQ=="
+AZURE_CONTAINER = "storage"
+
+#DefaultEndpointsProtocol=https;AccountName=ymgallerystorage;AccountKey=44LrlrKS06pHQcPrAL/ekYjAO5Vm9ZTX82qHc/as6e/F58iP0t4jq+v5wlR1c+BlCwPPl5nQC1+4+ASt0go+TQ==;EndpointSuffix=core.windows.net
 
