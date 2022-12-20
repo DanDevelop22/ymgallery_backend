@@ -134,7 +134,7 @@ CORS_ORIGIN_WHITELIST = [
 
 # Config HTTPS
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_HOST = ['ymgallerybackend.azurewebsites.net']
+SECURE_SSL_HOST = ['ymgalleryserver.azurewebsites.net']
 SESSION_COOKIE_SECURE = True
 SECURE_SSL_REDIRECT = True
 CSRF_COOKIE_SECURE = True
