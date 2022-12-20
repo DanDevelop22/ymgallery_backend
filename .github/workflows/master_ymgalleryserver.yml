@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'ymgalleryserver'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F8ECB0AD5A1F45E6B9A68A23A968F84C }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_09F5EC4900434CC1BF9585395E8A3107 }}
