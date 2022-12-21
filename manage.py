@@ -3,10 +3,10 @@
 import os
 import sys
 
-
+setting_module = 'ymgallery_backend.settings.pro' if 'WEBSITE_HOSTNAME' in os.environ else 'ymgallery_backend.settings.local'
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ymgallery_backend.settings.pro')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', setting_module)
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
