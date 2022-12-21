@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/6fea4e8d-2927-42e6-98ee-1c8367495ae1/AppServices/subscriptions/6fea4e8d-2927-42e6-98ee-1c8367495ae1/resourceGroups/ym_gallery/providers/Microsoft.Web/sites/ymgalleryserver",
+    "appService.deploySubpath": "."
+}
