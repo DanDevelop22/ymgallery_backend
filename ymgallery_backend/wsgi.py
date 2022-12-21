@@ -11,6 +11,8 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ymgallery_backend.settings.pro')
+setting_module = 'ymgallery_backend.settings.pro' if 'WEBSITE_HOSTNAME' in os.environ else 'ymgallery_backend.settings.local'
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', setting_module)
 
 application = get_wsgi_application()
