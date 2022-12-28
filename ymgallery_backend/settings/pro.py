@@ -131,7 +131,29 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'authentication.User'
 
 CORS_ORIGIN_WHITELIST = [
-     'http://localhost:3000'
+     '*'
+]
+CORS_ALLOW_METHODS = [
+    
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+    "DELETE",
+]
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-token',
+    'x-requested-with',
+    
 ]
 
 # Config HTTPS
