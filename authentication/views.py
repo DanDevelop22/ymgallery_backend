@@ -16,14 +16,18 @@ class LoginApiView(ObtainAuthToken):
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
         token, created = Token.objects.get_or_create(user=user)
-        print(token.user.profile_img.url)
+        
+        img_user = ''
+        
+        if user.profile_img != None:
+            img_user = token.user.profile_img.url
         return Response(
             {
             'id':user.id,
             'token': token.key,
             'name': token.user.name,
             'email': token.user.email,
-            'img': token.user.profile_img.url,
+            'img': img_user,
             'message':'Sucessful login',
             },
             status= status.HTTP_201_CREATED)
