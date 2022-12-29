@@ -18,9 +18,14 @@ class LoginApiView(ObtainAuthToken):
         token, created = Token.objects.get_or_create(user=user)
         
         img_user = ''
+        try:
+            if token.user.profile_img != None:
+                img_user = token.user.profile_img.url
+        except Exception as e:
+            print(e)
+            
         
-        if user.profile_img != None:
-            img_user = token.user.profile_img.url
+            
         return Response(
             {
             'id':user.id,
