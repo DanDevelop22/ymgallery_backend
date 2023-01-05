@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-9j5%x=w2w#v(ki2u0jw_np2d)awci*s!lrzely54r1e^9ci16q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*', 'http://localhost:19006/']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -131,36 +131,38 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'authentication.User'
 
 #Configuracion de Cross Origin
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:19006/'
-    
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:19006/",
 ]
-CSRF_TRUSTED_ORIGINS = [
-    'http://localhost:19006/'
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:19006/",
+    
 ]
 
-CORS_ALLOW_METHODS = [
+
+# CORS_ALLOW_METHODS = [
     
-    "GET",
-    "OPTIONS",
-    "PATCH",
-    "POST",
-    "PUT",
-    "DELETE",
-]
-CORS_ALLOW_HEADERS = [
-    'accept',
-    'accept-encoding',
-    'authorization',
-    'content-type',
-    'dnt',
-    'origin',
-    'user-agent',
-    'x-csrftoken',
-    'x-token',
-    'x-requested-with',
+#     "GET",
+#     "OPTIONS",
+#     "PATCH",
+#     "POST",
+#     "PUT",
+#     "DELETE",
+# ]
+# CORS_ALLOW_HEADERS = [
+#     'accept',
+#     'accept-encoding',
+#     'authorization',
+#     'content-type',
+#     'dnt',
+#     'origin',
+#     'user-agent',
+#     'x-csrftoken',
+#     'x-token',
+#     'x-requested-with',
     
-]
+# ]
 
 # Config HTTPS
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
