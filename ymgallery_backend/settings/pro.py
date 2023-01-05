@@ -133,10 +133,10 @@ AUTH_USER_MODEL = 'authentication.User'
 #Configuracion de Cross Origin
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = [
-    "http://localhost:19006/",
+    "http://localhost:19006",
 ]
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:19006/",
+    "http://localhost:19006",
     
 ]
 
