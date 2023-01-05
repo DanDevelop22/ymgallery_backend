@@ -139,10 +139,6 @@ CSRF_TRUSTED_ORIGINS = [
     'http://localhost:19006/'
 ]
 
-CORS_ORIGIN_WHITELIST = [
-     '*',
-     
-]
 CORS_ALLOW_METHODS = [
     
     "GET",
