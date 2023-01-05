@@ -1,3 +1,5 @@
 from django.contrib import admin
-
-# Register your models here.
+from .models import Paint
+@admin.register(Paint)
+class PaintAdmin(admin.ModelAdmin):
+    list_display = ('name','img','author','price')
