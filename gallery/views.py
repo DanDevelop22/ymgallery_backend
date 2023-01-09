@@ -31,7 +31,34 @@ class PaintLastAPIView(APIView):
                 'price': i.price,
                 'description': i.description,
                 'autor': i.author,
-                'img': i.img.url
+                'img': i.img.url,
+                'is_recommended': i.is_recommended,
+                'size_paint': i.size_paint,
+                'tecnical': i.tecnical
             })
             
         return Response({'data': paint_object}, status=status.HTTP_200_OK)
+    
+class PaintRecommendedAPIView(APIView):
+    authentication_classes = (TokenAuthentication, )
+    permission_classes = (IsAuthenticated,)
+    
+    def get(self, request, *arg, **kwargs):
+        paints_recommended = Paint.objects.filter(is_recommended=True).order_by('-date_created')
+        
+        paint_recommended_object = []
+        
+        for i in paints_recommended:
+            paint_recommended_object.append({
+                'id': i.id,
+                'name': i.name,
+                'price': i.price,
+                'description': i.description,
+                'autor': i.author,
+                'img': i.img.url,
+                'is_recommended': i.is_recommended,
+                'size_paint': i.size_paint,
+                'tecnical': i.tecnical
+            })
+            
+        return Response({'data': paint_recommended_object}, status=status.HTTP_200_OK)
