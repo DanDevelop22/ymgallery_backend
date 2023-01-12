@@ -22,3 +22,7 @@ class PaintSerializer(serializers.ModelSerializer):
     
 class PaintLastSerializer(serializers.Serializer):
     cant = serializers.IntegerField()
+    
+class PaintFilterSerializer(serializers.Serializer):
+    search = serializers.CharField(max_length=255)
+    filter = serializers.CharField(max_length=255)
