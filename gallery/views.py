@@ -79,15 +79,15 @@ class PaintFilterAPIView(APIView):
 
         paints = []
 
-        if filter.lower() == 'Todo':
+        if filter.lower() == 'todo':
             paints = Paint.objects.filter(
-                name__contains=search, author__contains=search, price__contains=search, tecnical__contains=search)
+                name__contains=search, author__icontains=search, price__contains=search, tecnical__contains=search)
         elif filter.lower() == 'artista':
-            paints = Paint.objects.filter(author__contains=search)
+            paints = Paint.objects.filter(author__icontains=search)
         elif filter.lower() == 'precio':
-            paints = Paint.objects.filter(price__contains=search)
+            paints = Paint.objects.filter(price__icontains=search)
         elif filter.lower() == 'estilo':
-            paints = Paint.objects.filter(tecnical__contains=search)
+            paints = Paint.objects.filter(tecnical__icontains=search)
 
         paint_object = []
 
