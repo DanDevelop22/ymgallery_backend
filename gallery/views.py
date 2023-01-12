@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializers import PaintLastSerializer, PaintFilterSerializer
 from .models import Paint
+from django.db.models import Q
 
 
 class PaintLastAPIView(APIView):
@@ -80,8 +81,7 @@ class PaintFilterAPIView(APIView):
         paints = []
 
         if filter.lower() == 'todo':
-            paints = Paint.objects.filter(
-                name__contains=search, author__icontains=search, price__contains=search, tecnical__contains=search)
+            paints = Paint.objects.filter(Q(name__icontains=search | Q(author__icontains=search) | Q(price__icontains=search) | Q(tecnical__icontains=search)))
         elif filter.lower() == 'artista':
             paints = Paint.objects.filter(author__icontains=search)
         elif filter.lower() == 'precio':
