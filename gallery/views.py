@@ -7,6 +7,8 @@ from rest_framework.response import Response
 from .serializers import PaintLastSerializer, PaintFilterSerializer
 from .models import Paint
 from django.db.models import Q
+import re
+from unicodedata import normalize
 
 
 class PaintLastAPIView(APIView):
@@ -68,26 +70,29 @@ class PaintRecommendedAPIView(APIView):
 
 class PaintFilterAPIView(APIView):
     serializer_class = PaintFilterSerializer
-    authentication_classes = (TokenAuthentication, )
-    permission_classes = (IsAuthenticated,)
+    # authentication_classes = (TokenAuthentication, )
+    # permission_classes = (IsAuthenticated,)
 
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
 
-        search = serializer.validated_data['search']
+        search_data = serializer.validated_data['search']
         filter = serializer.validated_data['filter']
-
+        
+        search = re.sub(r"([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+", r"\1", 
+                                    normalize( "NFD", search_data), 0, re.I)
+        
         paints = []
 
         if filter.lower() == 'todo':
-            paints = Paint.objects.filter(Q(name__icontains=search | Q(author__icontains=search) | Q(price__icontains=search) | Q(tecnical__icontains=search)))
+            paints = Paint.objects.filter(Q(name__icontains=search) | Q(author__icontains=search) | Q(price__icontains=search) | Q(tecnical__icontains=search))
         elif filter.lower() == 'artista':
             paints = Paint.objects.filter(author__icontains=search)
         elif filter.lower() == 'precio':
             paints = Paint.objects.filter(price__icontains=search)
         elif filter.lower() == 'estilo':
-            paints = Paint.objects.filter(tecnical__icontains=search)
+            paints = Paint.objects.filter(tecnical__icontains_unaccent=search)
 
         paint_object = []
 
