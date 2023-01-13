@@ -83,6 +83,8 @@ class PaintFilterAPIView(APIView):
         search = re.sub(r"([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+", r"\1", 
                                     normalize( "NFD", search_data), 0, re.I)
         
+        print(search)
+        
         paints = []
 
         if filter.lower() == 'todo':
@@ -92,7 +94,7 @@ class PaintFilterAPIView(APIView):
         elif filter.lower() == 'precio':
             paints = Paint.objects.filter(price__icontains=search)
         elif filter.lower() == 'estilo':
-            paints = Paint.objects.filter(tecnical__unaccent__startswith=search)
+            paints = Paint.objects.filter(tecnical__icontains=search)
 
         paint_object = []
 
