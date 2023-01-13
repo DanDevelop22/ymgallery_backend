@@ -92,7 +92,7 @@ class PaintFilterAPIView(APIView):
         elif filter.lower() == 'precio':
             paints = Paint.objects.filter(price__icontains=search)
         elif filter.lower() == 'estilo':
-            paints = Paint.objects.filter(tecnical__unaccent__icontains=search)
+            paints = Paint.objects.filter(tecnical__unaccent__startswith=search)
 
         paint_object = []
 
